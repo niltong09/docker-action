@@ -7,6 +7,7 @@ PASSWORD=$2
 REPOSITORY=$3
 REGISTRY=$4
 TAG=$5
+TAGLEGACY=$6
 
 if [ -z $USERNAME ]; then
   echo 'Required username parameter'
@@ -34,8 +35,12 @@ if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
 fi
 
-docker build -t $IMAGE .
 docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
+if [[ -z $TAGLEGACY ]]; then
+  LEGACYIMAGE=$REPOSITORY:$TAGLEGACY
+  docker image pull $IMAGE && docker image tag $IMAGE $LEGACYIMAGE && docker push $LEGACYIMAGE 1>/dev/null 2>/dev/null
+fi
+docker build -t $IMAGE .
 docker push $IMAGE
 
 echo ::set-output name=image::$IMAGE

@@ -1,11 +1,11 @@
 FROM docker:stable
 
 LABEL "name"="Docker Action"
-LABEL "maintainer"="Yeongjin Lee <yeongjinnn@gmail.com>"
+LABEL "maintainer"="Nilton Gabriel <niltong09@gmail.com>"
 LABEL "version"="1.0.0"
 
 LABEL "com.github.actions.name"="Docker Action"
-LABEL "com.github.actions.description"="GitHub Actions for build and publish Docker Image"
+LABEL "com.github.actions.description"="GitHub Actions for build and publish Docker Image and backup the tag before replacing"
 LABEL "com.github.actions.icon"="package"
 LABEL "com.github.actions.color"="blue"
 

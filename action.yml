@@ -1,34 +1,38 @@
-name: 'Docker Action'
-description: 'GitHub Actions for build and publish Docker Image'
-author: 'Yeongjin Lee <yeongjinnn@gmail.com>'
+name: "Docker Action"
+description: "GitHub Actions for build and publish Docker Image"
+author: "Yeongjin Lee <yeongjinnn@gmail.com>"
 branding:
-  icon: 'package'
-  color: 'blue'
+  icon: "package"
+  color: "blue"
 inputs:
   username:
-    description: 'Registry username'
+    description: "Registry username"
     required: true
   password:
-    description: 'Registry password'
+    description: "Registry password"
     required: true
   repository:
-    description: 'Repository on registry'
+    description: "Repository on registry"
     required: true
   registry:
-    description: 'Registry hostname'
+    description: "Registry hostname"
     required: false
   tag:
-    description: 'Image tag'
+    description: "Image tag"
+    required: false
+  legacytag:
+    description: "Image tag for backup current tag"
     required: false
 outputs:
   image:
-    description: 'Tagged docker image'
+    description: "Tagged docker image"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.username }}
     - ${{ inputs.password }}
     - ${{ inputs.repository }}
     - ${{ inputs.registry }}
     - ${{ inputs.tag }}
+    - ${{ inputs.legacytag }}
